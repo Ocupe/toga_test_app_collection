@@ -1,6 +1,6 @@
 """ 'Dialogs Test App'
 This little program let's you check whether or not you your dialogs are working the right way.
-When pressing a button it should open the corresponding dialog window.
+When pressing a button the right dialog window should open.
 The return value of the dialog is displayed in the label underneath the button that opened it.
 """
 
