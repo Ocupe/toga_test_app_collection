@@ -1,18 +1,23 @@
 import toga
 from colosseum import CSS
 
-def callback(widget):
-    print(widget.layout)
 
 def build(app):
-    box = toga.Box(style=CSS(flex=1, padding=30))
+    box = toga.Box(style=CSS(width=200, padding=20))
+
+    def callback(widget):
+        box.style.width = box.style.width + 100
+        print(box.style.width)
+
     for x in range(24):
         box.add(toga.Button('Button_{}'.format(x), on_press=callback))
     btn = toga.Button('Button_{}'.format(1), on_press=callback)
     # box.add(btn)
 
 
-    scrollcontainer = toga.ScrollContainer(style=CSS(flex=1))
+    scrollcontainer = toga.ScrollContainer()
+    scrollcontainer.horizontal = False
+    scrollcontainer.horizontal = False
     scrollcontainer.content = box
     return scrollcontainer
 

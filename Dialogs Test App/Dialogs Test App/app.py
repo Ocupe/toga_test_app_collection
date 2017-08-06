@@ -78,3 +78,6 @@ def build(app):
 def main():
     # This needs to return an object that has a main_loop() method.
     return toga.App('Dialogs Test App', 'org.pybee.dialogs', startup=build)
+
+if __name__ == '__main__':
+    main().main_loop()
