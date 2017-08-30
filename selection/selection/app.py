@@ -27,6 +27,10 @@ def build(app):
     return box
 
 
+def main():
+    return toga.App('Test Selection', 'org.pybee.helloworld', startup=build)
+
+
 if __name__ == '__main__':
-    app = toga.App('Test Slider', 'org.pybee.helloworld', startup=build)
+    app = main()
     app.main_loop()
