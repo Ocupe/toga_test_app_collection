@@ -4,7 +4,13 @@ from colosseum import CSS
 
 
 def build(app):
-    textinput = toga.TextInput()
+    def on_change(widget):
+        print(widget.value)
+
+    def on_submit(widget):
+        print(widget.value)
+
+    textinput = toga.TextInput(on_change=on_change, on_submit=on_submit)
     def callback(widget):
         print(textinput.value)
         textinput.value = ''

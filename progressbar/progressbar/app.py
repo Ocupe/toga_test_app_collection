@@ -1,12 +1,6 @@
 from random import random
-
-import toga
-
-import time
 import toga
 from colosseum import CSS
-
-
 
 
 def build(app):
@@ -32,6 +26,10 @@ def build(app):
     return box
 
 
+def main():
+    return toga.App('Test Slider', 'org.pybee.helloworld', startup=build)
+
+
 if __name__ == '__main__':
-    app = toga.App('Test Slider', 'org.pybee.helloworld', startup=build)
+    app = main()
     app.main_loop()
