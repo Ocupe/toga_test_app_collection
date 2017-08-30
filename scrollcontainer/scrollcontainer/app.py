@@ -22,6 +22,10 @@ def build(app):
     return scrollcontainer
 
 
+def main():
+    return toga.App('Test Scrollcontainer', 'org.pybee.helloworld', startup=build)
+
+
 if __name__ == '__main__':
-    app = toga.App('Test Scrollcontainer', 'org.pybee.helloworld', startup=build)
+    app = main()
     app.main_loop()
