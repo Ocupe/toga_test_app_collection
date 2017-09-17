@@ -4,7 +4,7 @@ import re
 from setuptools import setup, find_packages
 import sys
 
-with io.open('./Dialogs Test App/__init__.py', encoding='utf8') as version_file:
+with io.open('./dialogs/__init__.py', encoding='utf8') as version_file:
     version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", version_file.read(), re.M)
     if version_match:
         version = version_match.group(1)
@@ -17,24 +17,31 @@ with io.open('README.rst', encoding='utf8') as readme:
 
 
 setup(
-    name='Dialogs Test App',
+    name='dialogs',
     version=version,
-    description='An app that does lots of stuff',
+    description='Test implementation of dialogs.',
     long_description=long_description,
     author='Jonas Schell',
     author_email='jonasschell@ocupe.org',
-    license='MIT license',
-    packages=find_packages(exclude=['docs', 'tests']),
+    license='BSD license',
+    packages=find_packages(
+        exclude=[
+            'docs', 'tests',
+            'windows', 'macOS', 'linux',
+            'iOS', 'android',
+            'django'
+        ]
+    ),
     classifiers=[
         'Development Status :: 1 - Planning',
-        'License :: OSI Approved :: MIT license',
+        'License :: OSI Approved :: BSD license',
     ],
     install_requires=[
     ],
     options={
         'app': {
-            'formal_name': 'dialogs_test_app',
-            'bundle': 'org.ocupe'
+            'formal_name': 'dialogs',
+            'bundle': 'com.example'
         },
 
         # Desktop/laptop deployments

@@ -1,4 +1,4 @@
-dialogs_test_app
-================
+dialogs
+=======
 
-An app that does lots of stuff
+Test implementation of dialogs.

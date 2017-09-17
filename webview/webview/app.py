@@ -2,49 +2,60 @@ import toga
 from colosseum import CSS
 
 
-class Graze(toga.App):
-    def startup(self):
-        self.main_window = toga.MainWindow(self.name)
-        self.main_window.app = self
+def build(app):
+    def on_load(widget):
+        print('Finished loading!')
+        print(widget.dom)
 
-        self.webview = toga.WebView(style=CSS(flex=1))
-        self.url_input = toga.TextInput(
-            initial='https://github.com/',
-            style=CSS(flex=1, margin=5)
-        )
+    def on_key(event, flag):
+        print('Key down: ', event, ' Flag: ', flag)
 
-        box = toga.Box(
-            children=[
-                toga.Box(
-                    children=[
-                        self.url_input,
-                        toga.Button('Go', on_press=self.load_page, style=CSS(width=50)),
-                    ],
-                    style=CSS(
-                        flex_direction='row'
-                    )
-                ),
-                self.webview,
-            ],
-            style=CSS(
-                flex_direction='column'
+    webview = toga.WebView(on_key_down=on_key, on_webview_load=on_load, style=CSS(flex=1))
+    url_input = toga.TextInput(
+        initial='https://github.com/',
+        style=CSS(flex=1, margin=5)
+    )
+
+    def load_page(widget):
+        print('loading: ', url_input.value)
+        webview.url = url_input.value
+
+    def print_dom(widget):
+        print(webview.dom)
+
+    box = toga.Box(
+        children=[
+            toga.Box(
+                children=[
+                    url_input,
+                    toga.Button('Go', on_press=load_page, style=CSS(width=50)),
+                ],
+                style=CSS(
+                    flex_direction='row',
+                    padding_top=25
+                )
+            ),
+            webview,
+            toga.Box(
+                children=[
+                    toga.Button('Print DOM', on_press=print_dom)
+                ]
             )
+        ],
+        style=CSS(
+            flex_direction='column'
         )
+    )
 
-        self.main_window.content = box
-        self.webview.url = self.url_input.value
+    webview.url = url_input.value
 
-        # Show the main window
-        self.main_window.show()
-
-    def load_page(self, widget):
-        print('loading: ', self.url_input.value)
-        self.webview.url = self.url_input.value
+    # Show the main window
+    return box
 
 
 def main():
     # This needs to return an object that has a main_loop() method.
-    return Graze('Graze', 'org.pybee.graze')
+    return toga.App('Graze', 'org.pybee.graze', startup=build)
 
 
 if __name__ == '__main__':
