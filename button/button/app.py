@@ -15,7 +15,7 @@ def build(app):
     btn = toga.Button('My Button', on_press=on_press)
 
     def activate(widget):
-        btn.enabled = False if btn.enabled else True
+        btn.enabled = not btn.enabled
 
     btn_enabled = toga.Button('Enable/Disable Button', on_press=activate)
     box.add(btn)

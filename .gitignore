@@ -1,6 +1,8 @@
+symbolic links/
+
 # Packaged Apps
-iOS
-macOS
+iOS/
+macOS/
 android
 
 # Byte-compiled / optimized / DLL files

@@ -16,6 +16,11 @@ def build(app):
     box = toga.Box(style=CSS(padding=20))
     box.add(slider)
     box.add(label)
+
+    def toggle_enable(widget):
+        slider.enabled = not slider.enabled
+
+    box.add(toga.Button('Toggle Enabled', on_press=toggle_enable))
     return box
 
 
