@@ -9,12 +9,26 @@ from colosseum import CSS
 def build(app):
     box = toga.Box(style=CSS(flex=1, padding=20))
 
-    dl = toga.DetailedList(data=['Item 0', 'Item 1', 'Item 2'])
+    def on_select(widget, selection):
+        print(widget)
+        print(selection)
+
+    def on_refresh(widget):
+        print('refreshing this shit!')
+
+    def on_delete(widget, row):
+        print('deleting someting', widget, 'row', row)
+        print(widget)
+
+    dl = toga.DetailedList(data=['Item 0', 'Item 1', 'Item 2'], on_select=on_select, on_delete=on_delete)
     btn = toga.Button('My Button')
+
+    dl.on_refresh = on_refresh
+    dl.data = '1 2 3 4 5 6'.split(' ')
 
     box.add(dl)
     box.add(btn)
-    return box
+    return dl
 
 
 def main():
