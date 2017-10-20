@@ -9,8 +9,10 @@ def build(app):
     for x in range(5):
         data.append([str(x) for x in range(5)])
 
+    label = toga.Label('No row selected.')
+
     def selection_handler(widget, row):
-        print('selected row: {}'.format(row))
+        label.text = 'You selected row: {}'.format(row) if row is not None else 'No row selected'
 
     table = toga.Table(headings=['heading_{}'.format(x) for x in range(5)],
                        data=data,
@@ -30,11 +32,11 @@ def build(app):
             print('Table is empty!')
 
     btn_style = CSS(flex=1)
-    btn_insert = toga.Button('Insert', on_press=insert_handler, style=btn_style)
-    btn_delete = toga.Button('Delete', on_press=delete_handler, style=btn_style)
+    btn_insert = toga.Button('Insert Row', on_press=insert_handler, style=btn_style)
+    btn_delete = toga.Button('Delete Row', on_press=delete_handler, style=btn_style)
     btn_box = toga.Box(children=[btn_insert, btn_delete], style=CSS(flex_direction='row'))
 
-    box = toga.Box(children=[table, btn_box], style=CSS(flex=1, flex_direction='column', padding=10))
+    box = toga.Box(children=[table, btn_box, label], style=CSS(flex=1, flex_direction='column', padding=10))
     return box
 
 
